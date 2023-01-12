@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DisplayProduct {
     public static void main(String[] args) throws IOException {
-        DisplayProducts(2);
+        DisplayProducts(1);
     }
 
     public static void DisplayProducts(int choice) throws IOException {
