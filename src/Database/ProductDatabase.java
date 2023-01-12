@@ -10,11 +10,11 @@ import java.util.List;
 
 public class ProductDatabase {
     public List<List<String>> Products(int choice) throws IOException{
-        String gameName;
+        String gameNameWithExtension;
         List<List<String>> records = new ArrayList<>();
 
-        gameName = getGameName(choice);
-        FileReader fileReader = new FileReader("C:\\Users\\LGU MACO\\IdeaProjects\\JavaTestSystem\\src\\Database\\Games\\" + gameName + ".csv");
+        gameNameWithExtension = getGameName(choice);
+        FileReader fileReader = new FileReader("C:\\Users\\LGU MACO\\IdeaProjects\\JavaTestSystem\\src\\Database\\Games\\" + gameNameWithExtension);
 
         try (CSVReader csvReader = new CSVReader(fileReader)) {
             String[] values;
@@ -27,8 +27,8 @@ public class ProductDatabase {
 
     public static String getGameName(int choice){
         return switch (choice) {
-            case 1 -> "CSGO";
-            case 2 -> "DOTA 2";
+            case 1 -> "CSGO.csv";
+            case 2 -> "DOTA 2.csv";
             default -> "";
         };
     }
