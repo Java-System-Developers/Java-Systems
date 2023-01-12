@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="opencsv">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/Downloads/Programs/For Claspaths/opencsv/commons-beanutils-1.9.3.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/For Claspaths/opencsv/commons-collections-3.2.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/For Claspaths/opencsv/commons-lang3-3.6.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/For Claspaths/opencsv/commons-logging-1.2.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/For Claspaths/opencsv/commons-text-1.1.jar!/" />
+      <root url="jar://$USER_HOME$/Downloads/Programs/For Claspaths/opencsv/opencsv-4.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
