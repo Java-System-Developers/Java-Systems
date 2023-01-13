@@ -23,6 +23,8 @@ public class UserDatabase {
         List<List<String>> records = new ArrayList<>();
 
         // Input
+        /* Checking Credentials */
+
         System.out.print("Enter Username: ");
         name = input.nextLine();
         System.out.print("Enter Password: ");
@@ -34,15 +36,13 @@ public class UserDatabase {
         FileReader fileReader = new FileReader("C:\\Users\\LGU MACO\\IdeaProjects\\JavaTestSystem\\src\\Users\\Credentials\\Credentials.csv");
 
         try (CSVWriter csvWriter = new CSVWriter(fileWriter)) {
-            // Adding Header to CSV
-            /*String[] header = {"Name", "Password", "ID"};
-            csvWriter.writeNext(header);*/
             try (CSVReader csvReader = new CSVReader(fileReader)) {
                 String[] values;
                 while ((values = csvReader.readNext()) != null) {
                     records.add(Arrays.asList(values));
                 }
-                if (checkCredentials(records, name, password)){
+                String[][] credentials = getCredentials(records); // Dili ko sure kung unsay gamit ani karon, basta naka 2d array na ang mga credentials
+                if (checkUsernameAndPassword(records, name, password)){
                     System.out.println("You are already logged in!");
                 } else {
                     System.out.println("Credentials not found, creating account.......");
@@ -63,12 +63,31 @@ public class UserDatabase {
         return false;
     }
 
-    public static boolean checkCredentials(List<List<String>> records, String name, String password) {
-        for (int i = 1; i < records.size() - 1; i++) {
-            if (Objects.equals(records.get(1).get(0), name) && Objects.equals(records.get(i).get(1), password)) {
+    public static boolean checkUsernameAndPassword(List<List<String>> records, String name, String password) {
+        for (int i = 1; i < records.size(); i++) {
+            if (Objects.equals(records.get(i).get(0), name) && Objects.equals(records.get(i).get(1), password)) {
                 return true;
             }
         }
         return false;
+    }
+
+    public static boolean checkUsername(List<List<String>>records, String name){
+
+        return false;
+    }
+
+    public static String[][] getCredentials(List<List<String>> records){
+        String[] username = new String[records.size()];
+        String[] password = new String[records.size()];
+        String[] userID = new String[records.size()];
+
+        for (int i = 0; i < records.size(); i++) {
+            username[i] = records.get(i).get(0);
+            password[i] = records.get(i).get(1);
+            userID[i] = records.get(i).get(2);
+        }
+
+        return new String[][]{username, password, userID};
     }
 }

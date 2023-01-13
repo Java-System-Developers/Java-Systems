@@ -9,10 +9,10 @@ import java.util.List;
 
 public class DisplayProduct {
     public static void main(String[] args) throws IOException {
-        DisplayProducts(1);
+
     }
 
-    public static void DisplayProducts(int choice) throws IOException {
+    public  void DisplayProducts(int choice) throws IOException {
         // Variables
         ProductDatabase productDatabase = new ProductDatabase();
         List<List<String>> menu = productDatabase.Products(choice);
