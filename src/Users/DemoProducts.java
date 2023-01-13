@@ -1,4 +1,4 @@
-package Products;
+package Users;
 
 public interface DemoProducts {
 }
