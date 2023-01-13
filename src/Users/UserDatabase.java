@@ -21,6 +21,7 @@ public class UserDatabase {
         // Variables
         String name, password, randomID;
         List<List<String>> records = new ArrayList<>();
+        String debug = "From BAJED's Branch";
 
         // Input
         /* Checking Credentials */
