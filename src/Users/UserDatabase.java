@@ -42,13 +42,16 @@ public class UserDatabase {
                     records.add(Arrays.asList(values));
                 }
                 String[][] credentials = getCredentials(records); // Dili ko sure kung unsay gamit ani karon, basta naka 2d array na ang mga credentials
-                if (checkUsernameAndPassword(records, name, password)){
-                    System.out.println("You are already logged in!");
-                } else {
-                    System.out.println("Credentials not found, creating account.......");
-                    // Adding Credentials
-                    String[] credentialData = {name, password, randomID};
-                    csvWriter.writeNext(credentialData);
+
+                switch (checkCredentials()) {
+                    case 1 -> System.out.println("Username is already taken!");
+                    case 2 -> System.out.println("Password is already taken!");
+                    case 3 -> System.out.println("You are already logged in!");
+                    default -> {
+                        // Adding Credentials
+                        String[] credentialData = {name, password, randomID};
+                        csvWriter.writeNext(credentialData);
+                    }
                 }
             } catch (Exception ignored) {
 
@@ -59,22 +62,37 @@ public class UserDatabase {
         }
     }
 
-    public static boolean isLoggedIn() {
-        return false;
+    public static int checkCredentials() {
+
+        return 0;
     }
 
-    public static boolean checkUsernameAndPassword(List<List<String>> records, String name, String password) {
+    public static int checkUserNameAndPassword(List<List<String>> records, String username, String password){
         for (int i = 1; i < records.size(); i++) {
-            if (Objects.equals(records.get(i).get(0), name) && Objects.equals(records.get(i).get(1), password)) {
-                return true;
+            if (Objects.equals(records.get(i).get(0), username) && Objects.equals(records.get(i).get(1), password)) {
+                return 1;
             }
         }
-        return false;
+        return 0;
     }
 
-    public static boolean checkUsername(List<List<String>>records, String name){
+    public static int checkIfUserNameIsUsed(String[] userName, String name){
+        for (String s : userName) {
+            if (Objects.equals(s, name)) {
+                System.out.println("Username is already used");
+                return 1;
+            }
+        }
+        return 0;
+    }
 
-        return false;
+    public static int checkIsPasswordIsUsed(String[] passwordArray, String password){
+        for (String s : passwordArray){
+            if (Objects.equals(s, password)){
+                return 1;
+            }
+        }
+        return 0;
     }
 
     public static String[][] getCredentials(List<List<String>> records){
