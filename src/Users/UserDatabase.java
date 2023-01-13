@@ -55,12 +55,7 @@ public class UserDatabase {
                     }
                     default -> System.out.println("Invalid Input!");
                 }
-            } catch (Exception ignored) {
-
             }
-            // Closing Writer Connection
-            csvWriter.close();
-        } catch (Exception ignored) {
         }
     }
 
