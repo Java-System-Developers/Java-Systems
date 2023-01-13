@@ -11,6 +11,7 @@ import java.util.List;
 public class ProductDatabase {
     public List<List<String>> Products(int choice) throws IOException{
         String gameNameWithExtension;
+        String name = "hallo";
         List<List<String>> records = new ArrayList<>();
 
         gameNameWithExtension = getGameName(choice);
