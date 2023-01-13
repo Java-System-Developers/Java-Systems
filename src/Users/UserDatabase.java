@@ -41,7 +41,8 @@ public class UserDatabase {
                 while ((values = csvReader.readNext()) != null) {
                     records.add(Arrays.asList(values));
                 }
-                String[][] credentials = getCredentials(records); // Dili ko sure kung unsay gamit ani karon, basta naka 2d array na ang mga credentials
+                // Dili ko sure kung unsay gamit ani karon, basta naka 2d array na ang mga credentials
+                String[][] credentials = getCredentials(records); // [[Usernames] [Passwords] [User ID's]] in order
 
                 switch (checkCredentials(name, password, credentials, records)) {
                     case 1 -> System.out.println("You are already logged in!");
