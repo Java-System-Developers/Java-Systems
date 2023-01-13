@@ -7,7 +7,6 @@ import java.io.IOException;
 */
 public class Main {
     public static void main(String[] args) throws IOException {
-        System.out.println("Hi Lance Gwapo");
         DisplayProduct displayProduct = new DisplayProduct();
         displayProduct.DisplayProducts(1);
     }
