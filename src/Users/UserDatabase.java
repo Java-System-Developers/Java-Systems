@@ -42,39 +42,59 @@ public class UserDatabase {
                 while ((values = csvReader.readNext()) != null) {
                     records.add(Arrays.asList(values));
                 }
-                String[][] credentials = getCredentials(records); // Dili ko sure kung unsay gamit ani karon, basta naka 2d array na ang mga credentials
-                if (checkUsernameAndPassword(records, name, password)){
-                    System.out.println("You are already logged in!");
-                } else {
-                    System.out.println("Credentials not found, creating account.......");
-                    // Adding Credentials
-                    String[] credentialData = {name, password, randomID};
-                    csvWriter.writeNext(credentialData);
-                }
-            } catch (Exception ignored) {
+                // Dili ko sure kung unsay gamit ani karon, basta naka 2d array na ang mga credentials
+                String[][] credentials = getCredentials(records); // [[Usernames] [Passwords] [User ID's]] in order
 
+                switch (checkCredentials(name, password, credentials, records)) {
+                    case 1 -> System.out.println("You are already logged in!");
+                    case 2 -> System.out.println("Username is already taken!");
+                    case 3 -> System.out.println("Password is already taken!");
+                    case 0 -> {
+                        // Adding Credentials
+                        String[] credentialData = {name, password, randomID};
+                        csvWriter.writeNext(credentialData);
+                    }
+                    default -> System.out.println("Invalid Input!");
+                }
             }
-            // Closing Writer Connection
-            csvWriter.close();
-        } catch (Exception ignored) {
         }
     }
 
-    public static boolean isLoggedIn() {
-        return false;
+    public static int checkCredentials(String name, String password, String[][] credentials, List<List<String>> records) {
+        if (checkUserNameAndPassword(records, name, password)){
+            return 1;
+        } else if (checkIfUserNameIsUsed(credentials[0], name)) {
+            return 2;
+        } else if (checkIsPasswordIsUsed(credentials[1], password)) {
+            return 3;
+        }
+        return 0;
     }
 
-    public static boolean checkUsernameAndPassword(List<List<String>> records, String name, String password) {
+    public static boolean checkUserNameAndPassword(List<List<String>> records, String username, String password){
         for (int i = 1; i < records.size(); i++) {
-            if (Objects.equals(records.get(i).get(0), name) && Objects.equals(records.get(i).get(1), password)) {
+            if (Objects.equals(records.get(i).get(0), username) && Objects.equals(records.get(i).get(1), password)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean checkUsername(List<List<String>>records, String name){
+    public static boolean checkIfUserNameIsUsed(String[] userName, String name){
+        for (String s : userName) {
+            if (Objects.equals(s, name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public static boolean checkIsPasswordIsUsed(String[] passwordArray, String password){
+        for (String s : passwordArray){
+            if (Objects.equals(s, password)){
+                return true;
+            }
+        }
         return false;
     }
 
