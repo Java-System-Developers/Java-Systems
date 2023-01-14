@@ -1,43 +1,29 @@
 package UI;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Scanner scanf = new Scanner(System.in);
-        List<List<String>> products = new ArrayList<>();
-        List<String> item = new ArrayList<>();
-        int i = 0;
+        DisplayProduct displayProduct = new DisplayProduct();
+        Buy store = new Buy();
 
+        int choice, quantity;
 
-        item.add("Manifold Paradox");
-        item.add("Phantom Assassin");
-        item.add("Arcana");
+        displayProduct.displayProducts(1);
 
-        products.add(0, item);
+        System.out.print("Which item do you want to buy? No.: ");
+        choice = scanf.nextInt();
 
-        System.out.println(products);
+        System.out.print("How many would you like to buy?: ");
+        quantity = scanf.nextInt();
 
-        item = new ArrayList<>();
-
-        item.add("Magus Apex");
-        item.add("Invoker");
-        item.add("Immortal");
-
-        products.add(1, item);
-
-        System.out.println(products);
-
-        products.remove(0);
-
-        System.out.println(products);
-
-
-
+        store.purchaseCSGO(choice, quantity);
 
     }
 

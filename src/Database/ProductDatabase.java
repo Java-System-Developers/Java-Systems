@@ -14,7 +14,7 @@ public class ProductDatabase {
         List<List<String>> records = new ArrayList<>();
 
         gameNameWithExtension = getGameName(choice);
-        FileReader fileReader = new FileReader("C:\\Users\\LGU MACO\\IdeaProjects\\JavaTestSystem\\src\\Database\\Games\\" + gameNameWithExtension);
+        FileReader fileReader = new FileReader("C:\\Users\\bajed\\IdeaProjects\\BootlegSteamMarket\\src\\Database\\Games\\" + gameNameWithExtension);
 
         try (CSVReader csvReader = new CSVReader(fileReader)) {
             String[] values;

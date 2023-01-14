@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.List;
 
 public class DisplayProduct {
-    public void DisplayProducts(int choice) throws IOException {
+    public void displayProducts(int choice) throws IOException {
         // Variables
         ProductDatabase productDatabase = new ProductDatabase();
         List<List<String>> menu = productDatabase.Products(choice);
