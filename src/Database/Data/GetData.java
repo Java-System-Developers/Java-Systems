@@ -34,7 +34,7 @@ public class GetData {
         try (CSVWriter csvWriter = new CSVWriter(fileWriter)) {
             csvWriter.writeNext(credentialData);
         }
-        System.out.println("User Date Successfully Added!");
+        System.out.println("User Data Successfully Added!");
     }
 
     public String[][] getCredentials(List<List<String>> records) {
@@ -56,10 +56,16 @@ public class GetData {
         return credentialVerifier.checkCredentials(name, password, credentials, records);
     }
 
+
     public static class CredentialVerifier {
+        public static String userID = "";
+        public static String userName = "";
+
         public static boolean checkUserNameAndPassword(List<List<String>> records, String username, String password) {
             for (int i = 1; i < records.size(); i++) {
                 if (Objects.equals(records.get(i).get(0), username) && Objects.equals(records.get(i).get(1), password)) {
+                    userID = records.get(i).get(2);
+                    userName = records.get(i).get(0);
                     return true;
                 }
             }
