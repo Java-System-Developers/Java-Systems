@@ -1,4 +1,5 @@
 // TODO: Add a Registration Function Since we can Already Log In
+// TODO: Separate SignIn and SignOut Function
 
 import Database.Data.GetData;
 import Users.UserDatabase;
