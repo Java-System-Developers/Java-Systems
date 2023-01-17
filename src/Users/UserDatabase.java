@@ -23,6 +23,7 @@ public class UserDatabase {
         GetData data = new GetData();
         records = data.GetUserData();
         int verificationStatus;
+        boolean isSignUp;
 
         // Input
         /* Checking Credentials */
@@ -43,7 +44,9 @@ public class UserDatabase {
             case 3 -> System.out.println("Password is already taken!");
             case 0 -> {
                 // Adding Credentials
-                data.AddUserData(credentialData);
+                isSignUp = data.SignUp();
+                if (isSignUp) data.AddUserData(credentialData);
+//                data.AddUserData(credentialData);
             }
             default -> System.out.println("Invalid Input!");
         }

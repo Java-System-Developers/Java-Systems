@@ -6,12 +6,12 @@ import com.opencsv.CSVWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class GetData {
+    // Global Variable
+    public static Scanner input = new Scanner(System.in);
+
     public List<List<String>> GetUserData() throws IOException {
         // Variables
         List<List<String>> records = new ArrayList<>();
@@ -26,6 +26,17 @@ public class GetData {
             }
             return records;
         }
+    }
+
+    public boolean SignUp() {
+        String choice;
+        System.out.println("User Account not Found, Do you want to Sign Up?: ");
+        choice = input.nextLine().toLowerCase();
+        return switch (choice.charAt(0)) {
+            case 'y' -> true;
+            case 'n' -> false;
+            default -> false;
+        };
     }
 
     public void AddUserData(String[] credentialData) throws IOException {
